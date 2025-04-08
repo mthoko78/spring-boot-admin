@@ -1,1 +1,0 @@
-Visit {{ .Values.route }} to reach application; {{ .Chart.Name }} .
