@@ -1,0 +1,60 @@
+spring:
+  application:
+    name: admin-service
+  security:
+    user:
+      name: ${ADMIN_SERVER_USER:Integration_client}
+      password: ${ADMIN_SERVER_PASSWORD:password}
+  boot:
+    admin:
+      client:
+        instance:
+          metadata:
+            user:
+              name: ${spring.security.user.name}
+              password: ${spring.security.user.password}
+        auto-deregistration: true
+      notify:
+        mail:
+          enabled: true
+          from: test@fnb.co.za
+          to: test@fnb.co.za
+          template: classpath:/templates/spring-boot-admin/mail/custom-status-changes.html
+          ignore-changes: '*:UP'
+  mail:
+    host: ${ADMIN_MAIL_HOST:localhost}
+    port: ${ADMIN_MAIL_PORT:5001}
+    username: test
+    password: testPass
+    from-address: no-reply.fnb.co.za
+    smtp:
+      auth: true
+      connectiontimeout: 5000
+      timeout: 5000
+      writetimeout: 5000
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+        debug: false
+
+
+server:
+  port: 8081
+
+management:
+  endpoint:
+    loggers:
+      enabled: true
+    health:
+      probes:
+        enabled: true
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  health:
+    defaults:
+      enabled: false

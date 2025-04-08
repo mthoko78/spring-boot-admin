@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f8f8f8;
+                color: #333;
+            }
+
+            div {
+                max-width: 600px;
+                margin: 20px auto;
+                padding: 20px;
+                background-color: #fff;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            h1 {
+                color: #ff5555;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            p {
+                margin: 15px 0;
+            }
+
+            .failure-details {
+                background-color: #ffebee;
+                padding: 10px;
+                border-radius: 5px;
+                margin: 15px 0;
+            }
+        </style>
+        <title>Integration Service Status Change Alert</title>
+    </head>
+    <body>
+        <th:block th:remove="all">
+            <!-- This block will not appear in the body and is used for the subject -->
+            <th:block th:remove="tag" th:fragment="subject">
+                [[${instance.registration.name}]] is [[${event.statusInfo.status}]]
+            </th:block>
+        </th:block>
+        <div>
+            <h1><span th:text="${instance.registration.name}"/> is <span th:text="${event.statusInfo.status}"/> !</h1>
+            <p>Dear Integrations Monitoring Team,</p>
+            <p><span th:text="${instance.registration.name}"/> application has gone down and requires immediate action to investigate and resolve the issue.</p>
+            <div class="failure-details">
+                <p><strong>Status Details:</strong></p>
+                <ul style="margin: 5px 0; padding-left: 20px;">
+                    <li>Application Name: <span th:text="${instance.registration.name}"/></li>
+                    <li>Service URL: [[${instance.registration.serviceUrl}]]</li>
+                    <li>Time of Failure: [[${event.getTimestamp().toString().substring(0, 19).replace("T", " ")}]]</li>
+                    <li>Error Message: [[${instance.getStatusInfo().getDetails().get("message")}]]</li>
+                </ul>
+            </div>
+            <p>Please take necessary actions to bring the application back online as soon as possible.</p>
+            <p>Thank you for your prompt attention to this matter.</p>
+            <p style="text-align: center; color: #777;">Sincerely,<br>Spring Boot Admin.</p>
+        </div>
+    </body>
+</html>

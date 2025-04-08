@@ -1,0 +1,11 @@
+deployment:
+  scaling:
+    minReplicas: 1
+    maxReplicas: 1
+  env:
+    JAVA_OPTS: >-
+      -Dspring.profiles.active=qa
+      
+
+route:
+  host: dev-01-rb.ocp.fnb.co.za

@@ -1,0 +1,19 @@
+{{ if .Values.appdynamics.enabled}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}-appdynamics-configuration
+  namespace:  {{ .Release.Namespace }}
+  labels:
+    application: {{ .Chart.Name }}
+data:
+  APPDYNAMICS_CONTROLLER_HOST_NAME: "{{ .Values.appdynamics.controller.hostName }}"
+  APPDYNAMICS_CONTROLLER_PORT: "{{ .Values.appdynamics.controller.port }}"
+  APPDYNAMICS_CONTROLLER_SSL_ENABLED: "{{ .Values.appdynamics.controller.ssl.enabled }}"
+  APPDYNAMICS_AGENT_APPLICATION_NAME: "{{ .Values.appdynamics.agent.applicationName }}"
+  APPDYNAMICS_AGENT_TIER_NAME: "{{ .Values.appdynamics.agent.tierName }}"
+  APPDYNAMICS_AGENT_ACCOUNT_NAME: "{{ .Values.appdynamics.agent.accountName }}"
+  APPDYNAMICS_AGENT_ACCOUNT_ACCESS_KEY: "{{ .Values.appdynamics.agent.accountAccessKey }}"
+  APPDYNAMICS_JAVA_AGENT_REUSE_NODE_NAME: "{{ .Values.appdynamics.agent.reuse.nodeName.enabled }}"
+  APPDYNAMICS_JAVA_AGENT_REUSE_NODE_NAME_PREFIX: "{{ .Values.appdynamics.agent.reuse.nodeName.prefix }}"
+{{- end }}

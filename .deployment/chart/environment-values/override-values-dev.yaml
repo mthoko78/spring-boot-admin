@@ -1,0 +1,16 @@
+deployment:
+  strategy:
+    isRolling: false
+  scaling:
+    minReplicas: 1
+    maxReplicas: 1
+  env:
+    JAVA_OPTS: >-
+      -Dspring.profiles.active=dev
+      
+
+route:
+  host: dev-01-rb.ocp.fnb.co.za
+
+appdynamics:
+  enabled: false

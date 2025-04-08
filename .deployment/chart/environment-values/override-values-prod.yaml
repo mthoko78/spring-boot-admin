@@ -1,0 +1,20 @@
+deployment:
+  scaling:
+    minReplicas: 1
+    maxReplicas: 1
+  env:
+    JAVA_OPTS: >-
+      -Dspring.profiles.active=prod
+      
+
+route:
+  host: api.prod-01-rb.ocp.fnb.co.za
+
+appdynamics:
+  enabled: false
+  controller:
+    hostName: to-be-populated
+  agent:
+    accountAccessKey: to-be-populated
+    accountName: to-be-populated
+    applicationName: to-be-populated

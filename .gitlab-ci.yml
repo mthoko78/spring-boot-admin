@@ -1,0 +1,48 @@
+stages:
+  - build
+  - test
+  - package
+  - analyse
+  - deploy
+
+cache:
+  key: GLOBAL_CACHE_KEY
+  paths:
+    - ./.m2/repository/
+
+include:
+  - project: 'hc-integration/cicd'
+    ref: master
+    file: '.gitlab-ci-maven-docker-merge-request.yml'
+
+  - project: 'hc-integration/cicd'
+    ref: master
+    file: '.gitlab-ci-maven-build.yml'
+
+  - project: 'hc-integration/cicd'
+    ref: master
+    file: '.gitlab-ci-maven-integration-test.yml'
+
+  - project: 'hc-integration/cicd'
+    ref: master
+    file: '.gitlab-ci-docker-package.yml'
+
+  - project: 'hc-integration/cicd'
+    ref: master
+    file: '.gitlab-ci-maven-sonar.yml'
+
+  - project: 'hc-integration/deployment-cicd'
+    ref: master
+    file: '.gitlab-ci-dev-deployment.yml'
+
+  - project: 'hc-integration/deployment-cicd'
+    ref: master
+    file: '.gitlab-ci-qa-deployment.yml'
+
+  - project: 'hc-integration/deployment-cicd'
+    ref: master
+    file: '.gitlab-ci-uat-deployment.yml'
+
+  - project: 'hc-integration/deployment-cicd'
+    ref: master
+    file: '.gitlab-ci-prod-deployment.yml'
