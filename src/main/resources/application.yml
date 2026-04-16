@@ -26,7 +26,7 @@ spring:
     port: ${ADMIN_MAIL_PORT:5001}
     username: test
     password: testPass
-    from-address: no-reply.fnb.co.za
+    from-address: mthoko78@gmail.com
     smtp:
       auth: true
       connectiontimeout: 5000
@@ -41,7 +41,7 @@ spring:
 
 
 server:
-  port: 8081
+  port: 8083
 
 management:
   endpoint:

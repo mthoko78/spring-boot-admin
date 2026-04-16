@@ -1,4 +1,4 @@
-package za.co.frg.hr.intergration.admin.server.config;
+package com.mthoko.admin.server.config;
 
 import de.codecentric.boot.admin.server.config.AdminServerProperties;
 
