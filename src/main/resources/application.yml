@@ -1,5 +1,38 @@
+server:
+  port: ${PORT}
+
 spring:
-  application:
-    name: spring-boot-admin
-  config:
-    import: configserver:${CONFIG_SERVER_URL:http://localhost:8081}
+  security:
+    user:
+      name: ${ADMIN_SERVER_USER:admin}
+      password: ${ADMIN_SERVER_PASSWORD:password}
+  boot:
+    admin:
+      client:
+        instance:
+          metadata:
+            user:
+              name: ${spring.security.user.name}
+              password: ${spring.security.user.password}
+        auto-deregistration: true
+      notify:
+        mail:
+          enabled: true
+          from: cbac4c@gmail.com
+          to: mthoko78@gmail.com
+          template: classpath:templates/spring-boot-admin/mail/custom-status-changes.html
+          ignore-changes: '*:UP'
+
+management:
+  endpoint:
+    loggers:
+      enabled: true
+    health:
+      probes:
+        enabled: true
+      show-details: always
+  health:
+    defaults:
+      enabled: false
+
+PORT: 8082

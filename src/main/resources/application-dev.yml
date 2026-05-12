@@ -1,0 +1,6 @@
+spring:
+  boot:
+    admin:
+      notify:
+        mail:
+          template: file:/workspace/templates/custom-status-changes.html
